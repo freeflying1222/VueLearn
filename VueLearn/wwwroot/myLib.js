@@ -5,22 +5,45 @@ Vue.component("todo-item", {
     template: '<li>{{ todo.text }}</li>'
 })
 
+
+var data = {
+    message: '<span style="color:blue">hello, world</span>',
+    //message: "",
+    seen: true /*false*/,
+    firstName: 'Ye',
+    secondName: 'Fei',
+    //fullName: "Ye Fei",
+    todos: [
+        { id: 1, text: "javascript" },
+        { id: 2, text: "vue" }
+    ]
+};
+
+//Object.freeze(data);
+
 var app = new Vue({
     el: '#app',
-    data: {
-        message: "hello, world",
-        seen: true /*false*/,
-        todos: [
-            { id: 1, text: "javascript" },
-            { id: 2, text: "vue" }
-        ]
-    },
+    data: data,
     methods: {
         hello: function () {
             alert(this.message);
         }
+    },
+    created: function () {
+        console.log('created:' + this.message);
+    },
+    computed: {
+        splitedMessage: function () {
+            //return this.message.substr(1,4);
+            return Date.now();  //测试缓存
+        },
+        fullName: {
+            get: function () {
+                return this.firstName + ' ' + this.secondName;
+            },
+            set: function (value) {
+                this.firstName = value.split(' ')[0];
+            }
+        }
     }
-
 });
-
-

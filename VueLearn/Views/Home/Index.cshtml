@@ -6,10 +6,12 @@
 </head>
 <body>
     <div id="app">
-        <p v-if="seen" v-bind:title="message" >{{message}}</p>
-        @*<p v-for="todo in todos">{{todo.text}}</p>*@
+        <p>Hello,{{ fullName }}</p>
+        <p v-if="seen" :title="splitedMessage" >{{splitedMessage}}</p>
+        <p v-html="message"></p>
+        <p v-for="todo in todos">{{todo.text}}</p>
         <input v-model="message" />
-        <button v-on:click="hello">Hello</button>
+        <button @@click="hello">Hello</button>
         <ol>
             <todo-item v-for="item in todos" 
                        v-bind:todo="item"   @*这里把item赋值给Vue.component里的todo*@
