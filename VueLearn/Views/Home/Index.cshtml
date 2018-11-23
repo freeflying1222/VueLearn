@@ -3,18 +3,30 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <style type="text/css">
+        .active {
+            background: blue;
+        }
+
+        .danger {
+            color: yellow;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <p>Hello,{{ fullName }}</p>
-        <p v-if="seen" :title="splitedMessage" >{{splitedMessage}}</p>
+        @*1. 内联模板 <p class="danger" v-bind:class="{active:isActive}" >Hello,{{ fullName }}</p>*@
+        @*2. 实例data属性<p v-bind:class="classObject" >Hello,{{ fullName }}</p>*@
+        3. 数组 <p v-bind:class="[active,error]">Hello,{{ fullName }}</p>
+        <p v-if="seen" :title="splitedMessage">{{splitedMessage}}</p>
         <p v-html="message"></p>
         <p v-for="todo in todos">{{todo.text}}</p>
         <input v-model="message" />
         <button @@click="hello">Hello</button>
         <ol>
-            <todo-item v-for="item in todos" 
-                       v-bind:todo="item"   @*这里把item赋值给Vue.component里的todo*@
+            <todo-item :class="[active,error]"
+                       v-for="item in todos"
+                       v-bind:todo="item" @*这里把item赋值给Vue.component里的todo*@
                        v-bind:key="item.id">
             </todo-item>
         </ol>

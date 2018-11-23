@@ -13,6 +13,18 @@ var data = {
     firstName: 'Ye',
     secondName: 'Fei',
     //fullName: "Ye Fei",
+
+    ////1. 内联模板
+    //isActive: true,
+    ////2. 实例属性
+    //classObject: {
+    //    active: true,
+    //    'danger': true
+    //},
+    //3. 数组
+    active: 'active',
+    error: 'danger',
+
     todos: [
         { id: 1, text: "javascript" },
         { id: 2, text: "vue" }
