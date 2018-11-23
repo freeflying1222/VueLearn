@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="app">
+        <p v-if="seen" v-bind:title="message" >{{message}}</p>
+        @*<p v-for="todo in todos">{{todo.text}}</p>*@
+        <input v-model="message" />
+        <button v-on:click="hello">Hello</button>
+        <ol>
+            <todo-item v-for="item in todos" 
+                       v-bind:todo="item"   @*这里把item赋值给Vue.component里的todo*@
+                       v-bind:key="item.id">
+            </todo-item>
+        </ol>
+    </div>
+</body>
+</html>
+<script src="~/Vue.js"></script>
+<script src="~/myLib.js"></script>

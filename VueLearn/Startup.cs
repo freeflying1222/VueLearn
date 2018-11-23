@@ -24,6 +24,7 @@ namespace VueLearn
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddRouting();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,6 +34,9 @@ namespace VueLearn
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMvcWithDefaultRoute();
+            app.UseStaticFiles();
 
             app.UseMvc();
         }
