@@ -25,6 +25,12 @@ var data = {
     active: 'active',
     error: 'danger',
 
+    //遍历对象属性
+    obj: {
+        firstName: 'Ye',
+        secondName: 'Fei'
+    },
+
     todos: [
         { id: 1, text: "javascript" },
         { id: 2, text: "vue" }

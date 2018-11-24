@@ -23,6 +23,8 @@
         <p v-for="todo in todos">{{todo.text}}</p>
         <input v-model="message" />
         <button @@click="hello">Hello</button>
+        
+        <p>遍历数组</p>
         <ol>
             <todo-item :class="[active,error]"
                        v-for="item in todos"
@@ -30,6 +32,12 @@
                        v-bind:key="item.id">
             </todo-item>
         </ol>
+
+        遍历对象属性
+        <ul>
+            <li v-for="(props, k, i) in obj">{{i}}：{{k}}-{{props}}</li>
+        </ul>
+
     </div>
 </body>
 </html>
