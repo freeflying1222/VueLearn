@@ -2,11 +2,38 @@
 
 Vue.component("todo-item", {
     props: ['todo'], //实际上是定义了todo，下一行才能用嘛
-    template: '<li>{{ todo.text }}</li>'
+    template: '<li>{{ todo.text }}</li>',
+    //data: 23  不是函数会报错
+})
+
+Vue.component("blog", {
+    props: ['bpost'],
+    template: `
+    <div>
+        <h3>{{bpost.title}}</h3>
+        <button v-on:click="$emit('enlarge', 2)">大大大</button>
+        <p >{{bpost.text}}</p>
+    </div>
+    `
+})
+
+Vue.component("my-component", {
+    props: ["value"],
+    template: `
+        <input type="text" 
+               v-bind:value='value' 
+               v-on:input='$emit("input", $event.target.value)'></input>
+    `
 })
 
 
 var data = {
+
+    myValue:"",
+
+    fontsize: 24,
+    post: { id: 1, title: 'Vue.js入门', text: 'el：用一个页面已存在的DOM元素作为Vue实例的“挂载”' },
+
     message: '<span style="color:blue">hello, world</span>',
     //message: "",
     seen: true /*false*/,
@@ -31,6 +58,14 @@ var data = {
         secondName: 'Fei'
     },
 
+    //selectedName: "1",
+    //checkNames: [
+    //    { text: 'Jack', value: '1' },
+    //    { text: 'Smith', value: '2' },
+    //],
+    selectedName: "Smith",
+    checkNames: ["Jack", "Smith"],
+
     todos: [
         { id: 1, text: "javascript" },
         { id: 2, text: "vue" }
@@ -44,7 +79,11 @@ var app = new Vue({
     data: data,
     methods: {
         hello: function () {
-            alert(this.message);
+            //alert(this.message);
+            alert('hello');
+        },
+        bigger: function (event) {
+            this.fontsize += event;
         }
     },
     created: function () {

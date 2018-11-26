@@ -15,15 +15,63 @@
 </head>
 <body>
     <div id="app">
+
+        组件中使用v-model
+        <my-component v-model="myValue"></my-component>
+        myValue={{myValue}}
+        <br />
+
+        父级组件传值
+        <div v-bind:style="{'font-size':fontsize+'px'}">
+            <blog v-bind:bpost="post" v-on:enlarge="bigger"></blog>
+            @*<blog v-bind:post="post" ></blog>*@
+        </div>
+
+        表单元素
+        @*<br />
+            <input type="checkbox" true-value="yes" false-value="no" v-model="seen" />
+            <span>seen：{{seen}}</span>*@
+
+        @*<br />
+            <input type="checkbox" value="Jack" v-model="checkNames" />
+            <input type="checkbox" value="Tom" v-model="checkNames" />
+            <input type="checkbox" value="Smith" v-model="checkNames" />
+            <span>checkNames:{{ checkNames }}</span>*@
+
+        <br />
+        <input type="radio" v-bind:value="firstName" v-model="checkNames" />
+        <input type="radio" value="Tom" v-model="checkNames" />
+        <span>checkNames:{{ checkNames }}</span>
+
+        @*<br />
+            <select v-model="selectedName">
+                <option value="" disabled>-----</option>
+                <option v-for="item in checkNames" v-bind:value="item.value" >{{item.text}}</option>
+            </select>
+            <span>checkNames:{{ selectedName }}</span>*@
+
+        @*<br />
+            <select v-model="selectedName">
+                <option value="" disabled>-----</option>
+                <option v-for="item in checkNames" >{{item}}</option>
+            </select>
+            <span>checkNames:{{ selectedName }}</span>*@
+
+        <br />
         @*1. 内联模板 <p class="danger" v-bind:class="{active:isActive}" >Hello,{{ fullName }}</p>*@
         @*2. 实例data属性<p v-bind:class="classObject" >Hello,{{ fullName }}</p>*@
         3. 数组 <p v-bind:class="[active,error]">Hello,{{ fullName }}</p>
         <p v-if="seen" :title="splitedMessage">{{splitedMessage}}</p>
         <p v-html="message"></p>
         <p v-for="todo in todos">{{todo.text}}</p>
-        <input v-model="message" />
+
+
+        <input v-model.lazy="message" />
+        @*直接在v-on里调用js方法是不行的，只能执行Vue实例里定义的方法
+        <button v-on:click="alert(this.message);">Hello</button>*@
         <button @@click="hello">Hello</button>
-        
+        <span>{{message}}</span>
+
         <p>遍历数组</p>
         <ol>
             <todo-item :class="[active,error]"
@@ -37,8 +85,10 @@
         <ul>
             <li v-for="(props, k, i) in obj">{{i}}：{{k}}-{{props}}</li>
         </ul>
-
     </div>
+
+
+
 </body>
 </html>
 <script src="~/Vue.js"></script>
